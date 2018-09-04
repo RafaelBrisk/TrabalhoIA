@@ -7,7 +7,7 @@ public class Largura {
 	
 	public static void main(String[] args) {
 		Largura largura = new Largura();
-		largura.buscar(LabirintoFactory.get32x32(), 32, 32);
+		largura.buscar(LabirintoFactory.get8x8(), 8, 8);
 	}
 	
 	private boolean[][] quadrados;
@@ -16,8 +16,13 @@ public class Largura {
 	
 	private int numeroLinhas;
 	private int numeroColunas;
+	private Long nanoTempo;
+	private Long qtdNos;
 	
 	public void buscar(boolean[][] quadrados, int numeroLinhas, int numeroColunas) {
+		
+		long nanoStartT = System.nanoTime();
+		
 		this.numeroLinhas = numeroLinhas;
 		this.numeroColunas = numeroColunas;
 		
@@ -32,6 +37,7 @@ public class Largura {
 		List<LabirintoCaminho> caminhos = new ArrayList<>();
 		
 		LabirintoCaminho labirintoCaminho = new LabirintoCaminho();
+		qtdNos++;
 		labirintoCaminho.setRow(inicioR);
 		labirintoCaminho.setColumn(inicioC);
 		caminhos.add(labirintoCaminho);
@@ -50,6 +56,8 @@ public class Largura {
 		}
 		
 		System.out.println(builder.toString());
+
+		nanoTempo = System.nanoTime() - nanoStartT;
 	}
 	
 	private LabirintoCaminho recursivo(List<LabirintoCaminho> caminhos) {
@@ -80,6 +88,7 @@ public class Largura {
 				if (!quadrados[row][colunaEsquerda]) {
 					if (!lugaresVisitados[row][colunaEsquerda]) {
 						LabirintoCaminho labirintoCaminhoEsquerda = new LabirintoCaminho();
+						qtdNos++;
 						labirintoCaminhoEsquerda.setRow(row);
 						labirintoCaminhoEsquerda.setColumn(colunaEsquerda);
 						labirintoCaminhoEsquerda.setAnterior(labirintoCaminho);
@@ -95,6 +104,7 @@ public class Largura {
 				if (!quadrados[rowCima][column]) {
 					if (!lugaresVisitados[rowCima][column]) {
 						LabirintoCaminho labirintoCaminhoCima = new LabirintoCaminho();
+						qtdNos++;
 						labirintoCaminhoCima.setRow(rowCima);
 						labirintoCaminhoCima.setColumn(column);
 						labirintoCaminhoCima.setAnterior(labirintoCaminho);
@@ -110,6 +120,7 @@ public class Largura {
 				if (!quadrados[row][colunaDireita]) {
 					if (!lugaresVisitados[row][colunaDireita]) {
 						LabirintoCaminho labirintoCaminhoDireita = new LabirintoCaminho();
+						qtdNos++;
 						labirintoCaminhoDireita.setRow(row);
 						labirintoCaminhoDireita.setColumn(colunaDireita);
 						labirintoCaminhoDireita.setAnterior(labirintoCaminho);
@@ -125,6 +136,7 @@ public class Largura {
 				if (!quadrados[rowBaixo][column]) {
 					if (!lugaresVisitados[rowBaixo][column]) {
 						LabirintoCaminho labirintoCaminhoBaixo = new LabirintoCaminho();
+						qtdNos++;
 						labirintoCaminhoBaixo.setRow(rowBaixo);
 						labirintoCaminhoBaixo.setColumn(column);
 						labirintoCaminhoBaixo.setAnterior(labirintoCaminho);
@@ -137,6 +149,22 @@ public class Largura {
 		}
 		
 		return retorno;
+	}
+
+	public Long getNanoTempo() {
+		return nanoTempo;
+	}
+
+	public void setNanoTempo(Long nanoTempo) {
+		this.nanoTempo = nanoTempo;
+	}
+
+	public Long getQtdNos() {
+		return qtdNos;
+	}
+
+	public void setQtdNos(Long qtdNos) {
+		this.qtdNos = qtdNos;
 	}
 
 }
