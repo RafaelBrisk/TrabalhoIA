@@ -75,14 +75,13 @@ public class Profundidadej {
 					if (column > -1) {
 						if (!quadrados[row][column]) {
 							if (!lugaresVisitados[row][column]) {
+								qtdNos++;
+								pilha.insere(labirintoCaminho);
 								
+								lugaresVisitados[row][column] = true;
 							}
 						}
 					}
-					qtdNos++;
-					pilha.insere(labirintoCaminho);
-					
-					lugaresVisitados[row][column] = true;
 				}
 			}		
 		}
