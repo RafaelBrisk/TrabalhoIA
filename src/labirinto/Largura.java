@@ -155,16 +155,8 @@ public class Largura {
 		return nanoTempo;
 	}
 
-	public void setNanoTempo(Long nanoTempo) {
-		this.nanoTempo = nanoTempo;
-	}
-
 	public Long getQtdNos() {
 		return qtdNos;
-	}
-
-	public void setQtdNos(Long qtdNos) {
-		this.qtdNos = qtdNos;
 	}
 
 }
