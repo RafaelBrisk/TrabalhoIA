@@ -7,7 +7,9 @@ public class Largura {
 	
 	public static void main(String[] args) {
 		Largura largura = new Largura();
-		largura.buscar(LabirintoFactory.get8x8(), 8, 8);
+		largura.buscar(LabirintoFactory.get16x16(), 16, 16);
+		System.out.println("Nodes: " + largura.getQtdNos());
+		System.out.println("Tempo: " + largura.getNanoTempo() + " ns.");
 	}
 	
 	private boolean[][] quadrados;
@@ -16,8 +18,8 @@ public class Largura {
 	
 	private int numeroLinhas;
 	private int numeroColunas;
-	private Long nanoTempo;
-	private Long qtdNos;
+	private Long nanoTempo = 0L;
+	private Long qtdNos = 0L;
 	
 	public void buscar(boolean[][] quadrados, int numeroLinhas, int numeroColunas) {
 		
@@ -56,7 +58,6 @@ public class Largura {
 		}
 		
 		System.out.println(builder.toString());
-
 		nanoTempo = System.nanoTime() - nanoStartT;
 	}
 	
@@ -155,16 +156,8 @@ public class Largura {
 		return nanoTempo;
 	}
 
-	public void setNanoTempo(Long nanoTempo) {
-		this.nanoTempo = nanoTempo;
-	}
-
 	public Long getQtdNos() {
 		return qtdNos;
-	}
-
-	public void setQtdNos(Long qtdNos) {
-		this.qtdNos = qtdNos;
 	}
 
 }
