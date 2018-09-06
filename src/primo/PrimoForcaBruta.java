@@ -7,7 +7,8 @@ public class PrimoForcaBruta {
 		}
 	
 		boolean retorno = false;
-		for (int i = 2; i < numero; i++) {
+		
+		for (int i = 3; i < numero; i++) {
 			retorno = (numero % i == 0);
 			if (retorno) {
 				break;
@@ -23,7 +24,7 @@ public class PrimoForcaBruta {
 		
 		long primo = 0;
 		long numeroStop = 999999;
-		for (int numero = 1; numero < numeroStop; numero++) {
+		for (int numero = 33; numero < numeroStop; numero++) {
 			if (EhPrimo(numero)) {
 				primo = numero;
 			}
